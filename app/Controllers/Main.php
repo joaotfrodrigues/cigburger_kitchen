@@ -168,9 +168,14 @@ class Main extends BaseController
         $model = new ApiModel();
         $result = $model->finish_order($id);
 
-        echo '<pre>';
-        var_dump($result);
-        die;
+        // check if the result is ok
+        if ($result['status'] !== 200) {
+            return view('errors/error', [
+                'error' => $result['message']
+            ]);
+        }
+
+        return redirect()->to('/');
     }
 
     // -----------------------------------------------------------------------------------------------------------------

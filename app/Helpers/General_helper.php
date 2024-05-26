@@ -57,3 +57,20 @@ if (!function_exists('lead_zeros')) {
         return str_pad($value, $length, '0', STR_PAD_LEFT);
     }
 }
+
+if (!function_exists('order_color')) {
+    /**
+     * Determines the color associated with an order based on its order number.
+     * 
+     * This function calculates the color for a given order number by using the modulo operation. 
+     * The order number modulo 10 is used to select a color from the `ORDER_COLORS` array.
+     * 
+     * @param int $order_number The number of the order.
+     * 
+     * @return string The color associated with the given order number.
+     */
+    function order_color($order_number)
+    {
+        return ORDER_COLORS[$order_number % 10];
+    }
+}

@@ -102,3 +102,18 @@ define('APP_NAME', 'CIG KITCHEN');
 
 // ENCRYPTION KEY
 define('ENCRYPTION_KEY', 'pQa50gITVuVZpFXDRXrB7xzhXIrx3LLU');
+
+// ORDER COLORS
+define('ORDER_COLORS', [
+    '#331144',
+    '#2B2766',
+    '#550022',
+    '#005588',
+    '#003333',
+    '#002255',
+    '#5A1100',
+    '#442211',
+    '#332200',
+    '#115511',
+    '#554411'
+]);

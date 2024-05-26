@@ -69,6 +69,27 @@ class ApiModel extends Model
         return $this->api('get_pending_orders');
     }
 
+    /**
+     * Fetches detailed information about an order via an API request.
+     * 
+     * This function sends a POST request to the 'get_order_details' endpoint with the order ID
+     * to retrieve detailed information about the specified order. It utilizes the `api` method 
+     * to perform the request and return the response.
+     * 
+     * @param int $id The ID of the order to retrieve details for.
+     * 
+     * @return mixed The API response containing the order details.
+     */
+    public function get_order_details($id)
+    {
+        return $this->api('get_order_details', 'POST', ['id' => $id]);
+    }
+
+    public function delete_order($id)
+    {
+        return $this->api('delete_order', 'POST', ['id' => $id]);
+    }
+
     // -----------------------------------------------------------------------------------------------------------------
     // PRIVATE METHODS
     // -----------------------------------------------------------------------------------------------------------------

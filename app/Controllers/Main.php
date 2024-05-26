@@ -59,6 +59,67 @@ class Main extends BaseController
         die;
     }
 
+    /**
+     * Handles the deletion of an order.
+     * 
+     * This function decrypts the provided encrypted order ID and validates it. If the ID is invalid,
+     * it redirects to the home page. It then retrieves the order details by its ID and checks if the 
+     * retrieval was successful. If unsuccessful, it redirects to the home page. If the order exists 
+     * and is retrieved successfully, it displays a confirmation page with the order details.
+     * 
+     * @param string $enc_id The encrypted ID of the order to delete.
+     * 
+     * @return View The redirection or the rendered view of the delete order confirmation page.
+     */
+    public function delete_order($enc_id)
+    {
+        // check if $enc_ic is valid
+        $id = Decrypt($enc_id);
+        if (empty($id)) {
+            return redirect()->to('/');
+        }
+
+        // get order details
+        $model = new ApiModel();
+
+        $order = $model->get_order_details($id);
+
+        if ($order['status'] !== 200) {
+            return redirect()->to('/');
+        }
+
+        // display confirmation page
+        return view('delete_order', [
+            'order' => $order['data']
+        ]);
+    }
+
+    /**
+     * Confirms and executes the deletion of an order.
+     * 
+     * This function decrypts the provided encrypted order ID and validates it. If the ID is invalid,
+     * it redirects to the home page. Otherwise, it sends a request to the API to delete the order with
+     * the specified ID. After deletion, it redirects to the home page.
+     * 
+     * @param string $enc_id The encrypted ID of the order to be deleted.
+     * 
+     * @return RedirectResponse A redirect response to the home page after the order deletion process.
+     */
+    public function delete_order_confirm($enc_id)
+    {
+        // check if $enc_ic is valid
+        $id = Decrypt($enc_id);
+        if (empty($id)) {
+            return redirect()->to('/');
+        }
+
+        // get order details
+        $model = new ApiModel();
+        $result = $model->delete_order($id);
+
+        return redirect()->to('/');
+    }
+
     // -----------------------------------------------------------------------------------------------------------------
     // PRIVATE METHODS
     // -----------------------------------------------------------------------------------------------------------------

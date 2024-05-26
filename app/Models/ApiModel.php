@@ -55,6 +55,20 @@ class ApiModel extends Model
         return $this->api('get_restaurant_details');
     }
 
+    /**
+     * Retrieves pending orders for the current project.
+     * 
+     * This function sends a request to the 'get_pending_orders' endpoint to retrieve
+     * a list of orders that are currently pending for the specified project. It utilizes
+     * the `api` method to handle the request and response processing.
+     * 
+     * @return array|null The decoded JSON response from the CigBurger API, or null if an error occurs.
+     */
+    public function get_pending_orders()
+    {
+        return $this->api('get_pending_orders');
+    }
+
     // -----------------------------------------------------------------------------------------------------------------
     // PRIVATE METHODS
     // -----------------------------------------------------------------------------------------------------------------

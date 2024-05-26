@@ -10,12 +10,21 @@ class Main extends BaseController
 {
     public function index()
     {
-        $this->_init_system();
+        // initialize system if not initialized
+        if (!session()->get('restaurant_details')) {
+            $this->_init_system();
+        }
 
-        dd([
-            session()->get('restaurant_details'),
-            session()->get('products_categories'),
-            session()->get('products')
+        // get pending orders
+        $orders = $this->_get_pending_orders();
+
+        // temp - reduce array to x elements (5)
+        $orders = array_slice($orders, 0, 1);
+
+        // load view
+        $data['orders'] = $orders;
+        return view('main', [
+            'orders' => $orders
         ]);
     }
 
@@ -44,7 +53,9 @@ class Main extends BaseController
             die('System error: Please contact the support');
         }
 
-        echo 'ERROR: ' . $message;
+        echo view('errors/init_error', [
+            'error_message' => $message
+        ]);
         die;
     }
 
@@ -141,6 +152,11 @@ class Main extends BaseController
         $api = new ApiModel();
         $data = $api->get_restaurant_details();
 
+        // check if data is valid
+        if ($data['status'] !== 200) {
+            $this->init_error($data['message']);
+        }
+
         if (!$this->_check_data($data)) {
             $this->init_error('System error: Please contact the support');
         }
@@ -179,5 +195,27 @@ class Main extends BaseController
             return false;
         }
         return true;
+    }
+
+    /**
+     * Retrieves pending orders from the API.
+     * 
+     * This function sends a request to the `get_pending_orders` endpoint through the `ApiModel`
+     * to fetch the list of pending orders for the current project. If the API response status is
+     * not 200, it initializes an error with the received message. On success, it returns the 
+     * data containing the pending orders.
+     * 
+     * @return array|null The list of pending orders, or null if an error occurs.
+     */
+    private function _get_pending_orders()
+    {
+        $api = new ApiModel();
+
+        $results = $api->get_pending_orders();
+        if ($results['status'] !== 200) {
+            $this->init_error($results['message']);
+        }
+
+        return $results['data'];
     }
 }

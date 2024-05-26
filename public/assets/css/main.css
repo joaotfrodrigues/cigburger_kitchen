@@ -1,0 +1,31 @@
+.main-wrapper {
+    background-image: url('../images/cig_background.jpg');
+    background-repeat: repeat;
+    color: white;
+    overflow-x: hidden;
+}
+
+.top-bar-background {
+    background: linear-gradient(to bottom, rgb(80, 20, 0), rgb(130, 30, 0));
+}
+
+.top-bar-background > div > div > a > img {
+    margin-left: 16px;
+}
+
+.top-bar-watch {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 36px;
+    font-weight: bold;
+    background-color: rgb(37, 25, 25);
+    color: rgb(74, 253, 83);
+    border-radius: 20px;
+    padding: 5px 20px;
+}
+
+.order-wrapper {
+    border: 1px solid #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px 5px;
+}

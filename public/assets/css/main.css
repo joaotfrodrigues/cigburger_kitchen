@@ -9,7 +9,7 @@
     background: linear-gradient(to bottom, rgb(80, 20, 0), rgb(130, 30, 0));
 }
 
-.top-bar-background > div > div > a > img {
+.top-bar-background>div>div>a>img {
     margin-left: 16px;
 }
 
@@ -24,8 +24,39 @@
 }
 
 .order-wrapper {
-    border: 1px solid #fff;
-    border-radius: 10px;
-    padding: 20px;
     margin: 10px 5px;
+    outline: 1px solid #808080;
+}
+
+.order-top-bar {
+    background-color: rgba(255, 255, 255, .2);
+    height: 10px;
+}
+
+.order-content {
+    font-family: 'Courier New', Courier, monospace;
+    padding: 5px;
+}
+
+.order-content-item {
+    background-color: rgba(255, 255, 255, .2);
+    height: 70px;
+}
+
+.order-content-number {
+    font-size: 48px;
+    font-weight: bold;
+    width: 120px;
+}
+
+.order-content-total-items {
+    font-size: 24px;
+    font-weight: bold;
+    width: 250px;
+}
+
+.order-content-date-time {
+    font-size: 18px;
+    font-weight: bold;
+    width: 250px;
 }

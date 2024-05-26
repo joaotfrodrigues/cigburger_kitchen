@@ -19,7 +19,7 @@ class Main extends BaseController
         $orders = $this->_get_pending_orders();
 
         // temp - reduce array to x elements (5)
-        $orders = array_slice($orders, 0, 1);
+        // $orders = array_slice($orders, 0, 1);
 
         // load view
         $data['orders'] = $orders;

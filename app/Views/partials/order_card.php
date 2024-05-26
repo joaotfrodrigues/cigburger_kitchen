@@ -1,11 +1,28 @@
-<div class="col-xl-3 col-md-6 col-12">
+<div class="col-xxl-4 col-lg-6 col-12">
     <div class="order-wrapper">
-        <div class="d-flex">
-            <p class="me-4"><?= $order['id'] ?></p>
-            <p class="me-4"><?= $order['order_status'] ?></p>
-            <p class="me-4"><?= $order['order_date'] ?></p>
-            <p class="me-4"><?= $order['total_price'] ?></p>
-            <p class="me-4"><?= $order['total_items'] ?></p>
+        <div class="order-top-bar"></div>
+
+        <div class="d-flex order-content">
+            <!-- order number -->
+            <div class="order-content-item order-content-number text-center">
+                <?= lead_zeros(define_order_number_from_last_order_number($order['order_number']), 3) ?>
+            </div>
+            <!-- order total items -->
+            <div class="order-content-item ms-2 order-content-total-items d-flex align-items-center justify-content-center">
+                <?= $order['total_items'] ?> items
+            </div>
+            <!-- date time order -->
+            <div class="order-content-item ms-2 order-content-total-items d-flex align-items-center justify-content-center">
+                <?= date('d/m/Y H:i', strtotime($order['order_date'])) ?>
+            </div>
+            <!-- delete order -->
+            <a href="#" class="ms-2 btn btn-danger p-3 px-4">
+                <i class="fa-regular fa-trash-can fa-2x"></i>
+            </a>
+            <!-- handle the order -->
+            <a href="#" class="ms-2 btn btn-success p-3 px-4">
+                <i class="fa-regular fa-hand-point-right fa-2x"></i>
+            </a>
         </div>
     </div>
 </div>

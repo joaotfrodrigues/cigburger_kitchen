@@ -4,6 +4,7 @@
 - [❓ What is this?](#-what-is-this)
 - [🚀 Prerequisites](#-prerequisites)
 - [🛠️ Setup](#️-setup)
+- [⚙️ Important Configuration](#important-configuration)
 
 ## ❓ What is this?
 
@@ -46,5 +47,21 @@ To set up the project, follow these steps:
     php spark serve
 6. **Access the Application:**
     - Open your web browser and go to http://localhost/cigburger_kitchen/public/
+
+## ⚙️ Important Configuration<a name="important-configuration"></a>
+To set up the project's important configurations, follow these steps:
+
+1. **Update `config.json` for API URL:**
+    - Open the `config.json` file located in the project's root directory.
+    - Modify the `api_url` value to include the `/api` endpoint from your CigBurger Backoffice.
+        ```json
+        {
+            "api_url": "http://localhost/cigburger_backoffice/public/api/",
+            "project_id": "100",
+            "api_key": "j3fEehdw0puDbVJeNK8VMXtgJhibg0jO",
+            "machine_id": "XDFFGFRT"
+        }
+        ```
+    - Replace `"http://localhost/cigburger_backoffice/public/api/"` with the actual URL of your CigBurger Backoffice API endpoint.
 
 By following these steps, you should have your CigBurger Kitchen project set up and ready to use. Make sure to check out the other parts of the project, CigBurger Backoffice and CigBurger Request, to complete the full course project.

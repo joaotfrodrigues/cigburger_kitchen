@@ -63,3 +63,20 @@
     font-weight: bold;
     width: 250px;
 }
+
+.order-details-info {
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.6rem;
+}
+
+.order-product-item {
+    font-size: 1.6rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.order-product-item input[type="checkbox"] {
+    width: 30px;
+    height: 30px;
+}

@@ -85,9 +85,51 @@ class ApiModel extends Model
         return $this->api('get_order_details', 'POST', ['id' => $id]);
     }
 
+    /**
+     * Deletes an order by sending a request to the API.
+     *
+     * This method sends a POST request to the 'delete_order' endpoint of the API to delete the order
+     * with the specified ID. It includes the order ID in the request parameters. It returns the response
+     * from the API, indicating the success or failure of the deletion operation.
+     *
+     * @param int $id The ID of the order to delete.
+     * @return array The response from the API, containing the status and message of the deletion operation.
+     */
     public function delete_order($id)
     {
         return $this->api('delete_order', 'POST', ['id' => $id]);
+    }
+
+    /**
+     * Retrieves detailed order information including products from the API.
+     *
+     * This method sends a POST request to the 'get_order_details_with_products' endpoint of the API
+     * to retrieve detailed information about an order, including its associated products. It includes
+     * the order ID in the request parameters. It returns the response from the API, containing the
+     * detailed order information if successful.
+     *
+     * @param int $id The ID of the order to retrieve details for.
+     * @return array The response from the API, containing the detailed order information.
+     */
+    public function get_order_details_with_products($id)
+    {
+        return $this->api('get_order_details_with_products', 'POST', ['id' => $id]);
+    }
+
+    /**
+     * Sends a request to finalize an order by ID through the API.
+     * 
+     * This function calls the `api` method with the endpoint 'finish_order' and sends a POST request 
+     * with the specified order ID. It handles the response from the API to finalize the order, 
+     * which includes processing product availability and updating the order status.
+     * 
+     * @param int $id The ID of the order to be finalized.
+     * 
+     * @return mixed The response from the API, indicating the status of the operation and any relevant data or messages.
+     */
+    public function finish_order($id)
+    {
+        return $this->api('finish_order', 'POST', ['id' => $id]);
     }
 
     // -----------------------------------------------------------------------------------------------------------------

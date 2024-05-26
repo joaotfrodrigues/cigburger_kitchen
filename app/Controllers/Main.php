@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\ApiModel;
 use CodeIgniter\HTTP\ResponseInterface;
+use MO;
 
 class Main extends BaseController
 {
@@ -118,6 +119,58 @@ class Main extends BaseController
         $result = $model->delete_order($id);
 
         return redirect()->to('/');
+    }
+
+    /**
+     * Handles an order by retrieving its details along with associated products.
+     *
+     * This method decrypts the provided encrypted order ID and validates it. If the ID is valid,
+     * it retrieves the order details along with associated products using the 'get_order_details_with_products'
+     * method of the ApiModel class. If successful, it displays the order handling page, passing
+     * the order details and associated products data to the view. If there's an error, it redirects
+     * to the home page.
+     *
+     * @param string $enc_id The encrypted order ID.
+     * @return View|Redirect The view for handling the order or a redirect to the home page.
+     */
+    public function handle_order($enc_id)
+    {
+        // check if $enc_ic is valid
+        $id = Decrypt($enc_id);
+        if (empty($id)) {
+            return redirect()->to('/');
+        }
+
+        // get order details
+        $model = new ApiModel();
+        $order = $model->get_order_details_with_products($id);
+
+        if ($order['status'] !== 200) {
+            return redirect()->to('/');
+        }
+
+        // display handle order page
+        return view('handle_order', [
+            'order_details' => $order['data']['order_details'],
+            'order_products' => $order['data']['order_products']
+        ]);
+    }
+
+    public function handle_order_confirm($enc_id)
+    {
+        // check if $enc_ic is valid
+        $id = Decrypt($enc_id);
+        if (empty($id)) {
+            return redirect()->to('/');
+        }
+
+        // update order status to "finished"
+        $model = new ApiModel();
+        $result = $model->finish_order($id);
+
+        echo '<pre>';
+        var_dump($result);
+        die;
     }
 
     // -----------------------------------------------------------------------------------------------------------------

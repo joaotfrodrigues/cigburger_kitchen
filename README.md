@@ -50,7 +50,7 @@ To set up the project, follow these steps:
 6. **Start the Development Server:**
     ```bash
     php spark serve
-6. **Access the Application:**
+7. **Access the Application:**
     - Open your web browser and go to http://localhost/cigburger_kitchen/public/
 
 ## ⚙️ Important Configuration<a name="important-configuration"></a>
